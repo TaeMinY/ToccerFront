@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import Modal from "react-modal";
+import React, { useState } from "react"
+import styled from "styled-components"
+import Modal from "react-modal"
 
 const customStyles = {
   content: {
@@ -14,14 +14,14 @@ const customStyles = {
     width: "90%",
     transition: "0.2s"
   }
-};
+}
 function Header() {
-  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
   function openModal() {
-    setModalIsOpen(true);
+    setModalIsOpen(true)
   }
   function closeModal() {
-    setModalIsOpen(false);
+    setModalIsOpen(false)
   }
   return (
     <Wrap>
@@ -36,23 +36,16 @@ function Header() {
         <HeaderRight>
           <Button onClick={openModal}>로그인</Button>
         </HeaderRight>
-        <Modal
-          closeTimeoutMS={200}
-          appElement={document.getElementById("root") as HTMLElement}
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
+        <Modal closeTimeoutMS={200} appElement={document.getElementById("root") as HTMLElement} isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles} contentLabel="Example Modal">
           <ModalTitle>로그인</ModalTitle>
           <input type="text" />
         </Modal>
       </div>
     </Wrap>
-  );
+  )
 }
 
-export default Header;
+export default Header
 
 const Wrap = styled.div`
   width: 100%;
@@ -67,12 +60,12 @@ const Wrap = styled.div`
     align-items: center;
     margin: 0% auto;
   }
-`;
+`
 const Title = styled.div`
-  width: 154px;
+  width: 164px;
   color: white;
   font-size: 20px;
-`;
+`
 const Menu = styled.ul`
   display: flex;
   color: white;
@@ -83,7 +76,7 @@ const Menu = styled.ul`
     margin: 0 5px;
     text-align: center;
   }
-`;
+`
 const Button = styled.div`
   width: 78px;
   height: 38px;
@@ -95,14 +88,14 @@ const Button = styled.div`
   align-items: center;
   font-size: 13px;
   font-weight: 400;
-`;
+`
 const HeaderLeft = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-`;
-const HeaderRight = styled.div``;
+`
+const HeaderRight = styled.div``
 const ModalTitle = styled.div`
   font-size: 30px;
   color: #0f204b;
-`;
+`
