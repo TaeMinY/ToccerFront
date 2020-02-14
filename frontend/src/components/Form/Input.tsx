@@ -7,8 +7,8 @@ const styles = css`
   font-size: 1rem;
   padding: 8px 10px;
   border-radius: 4px;
+  height: 41px;
   border: solid 1px #cecece;
-  background-color: #ffffff;
   &:focus {
     outline: 0;
   }
