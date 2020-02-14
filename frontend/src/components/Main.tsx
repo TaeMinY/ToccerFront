@@ -1,16 +1,14 @@
-import React from "react";
-import styled from "styled-components";
+import React from "react"
+import styled from "styled-components"
 function Main() {
   return (
     <Wrap>
-      <div>
-        <div>캘린더</div>
-      </div>
+      <div></div>
     </Wrap>
-  );
+  )
 }
 
-export default Main;
+export default Main
 
 const Wrap = styled.div`
   width: 100%;
@@ -24,4 +22,4 @@ const Wrap = styled.div`
     align-items: center;
     margin: 0% auto;
   }
-`;
+`
