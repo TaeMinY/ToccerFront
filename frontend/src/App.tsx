@@ -6,42 +6,42 @@ import "./App.css"
 const GlobalStyle = createGlobalStyle`
 @font-face {
   font-family: "NanumSR";
-  src: url("./assets/fonts/NanumSquareR.ttf") format("truetype");
+  src: url(${require("./assets/fonts/NanumSquareR.ttf")}) format("truetype");
   font-display: swap;
 }
 @font-face {
   font-family: "NanumSB";
-  src: url("./assets/fonts/NanumSquareB.ttf") format("truetype");
+  src: url(${require("./assets/fonts/NanumSquareB.ttf")}) format("truetype");
   font-display: swap;
 }
 @font-face {
   font-family: "NanumSRB";
-  src: url("./assets/fonts/NanumSquareRoundB.ttf") format("truetype");
+  src: url(${require("./assets/fonts/NanumSquareRoundB.ttf")}) format("truetype");
   font-display: swap;
 }
 @font-face {
   font-family: "ProductSansM";
-  src: url("./assets/fonts/ProductSans-Black.ttf") format("truetype");
+  src: url(${require("./assets/fonts/ProductSans-Black.ttf")}) format("truetype");
   font-display: swap;
 }
 @font-face {
   font-family: "ProductSansR";
-  src: url("./assets/fonts/ProductSans-Medium.ttf") format("truetype");
+  src: url(${require("./assets/fonts/ProductSans-Medium.ttf")}) format("truetype");
   font-display: swap;
 }
 @font-face {
   font-family: "NanumSEB";
-  src: url("./assets/fonts/NanumSquareEB.ttf") format("truetype");
+  src: url(${require("./assets/fonts/NanumSquareEB.ttf")}) format("truetype");
   font-display: swap;
 }
 @font-face {
   font-family: "NotoSansBlack";
-  src: url("./assets/fonts/NotoSans-Black.ttf") format("truetype");
+  src: url(${require("./assets/fonts/NotoSans-Black.ttf")}) format("truetype");
   font-display: swap;
 }
 @font-face {
   font-family: "NotoSansBlod";
-  src: url("./assets/fonts/NotoSans-Blod.ttf") format("truetype");
+  src: url(${require("./assets/fonts/NotoSans-Bold.ttf")}) format("truetype");
   font-display: swap;
 }
   html,body{
