@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import Modal from "react-modal"
+import Input from "./Form/Input"
 
 const customStyles = {
   content: {
@@ -38,7 +39,7 @@ function Header() {
         </HeaderRight>
         <Modal closeTimeoutMS={200} appElement={document.getElementById("root") as HTMLElement} isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles} contentLabel="Example Modal">
           <ModalTitle>로그인</ModalTitle>
-          <input type="text" />
+          <Input type="text" placeholder="ID" />
         </Modal>
       </div>
     </Wrap>
@@ -98,4 +99,5 @@ const HeaderRight = styled.div``
 const ModalTitle = styled.div`
   font-size: 30px;
   color: #0f204b;
+  font-family: "NanumSB";
 `
