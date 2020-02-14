@@ -50,7 +50,7 @@ const GlobalStyle = createGlobalStyle`
   }
   *{
     box-sizing:border-box;
-    font-family:"NanumSR";
+    font-family:"ProductSansR";
   }
 a{
    text-decoration:none;
