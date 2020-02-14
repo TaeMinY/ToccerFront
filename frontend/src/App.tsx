@@ -1,8 +1,8 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import { Home } from "./pages";
-import { createGlobalStyle } from "styled-components";
-import "./App.css";
+import React from "react"
+import { Route } from "react-router-dom"
+import { Home } from "./pages"
+import { createGlobalStyle } from "styled-components"
+import "./App.css"
 const GlobalStyle = createGlobalStyle`
   html,body{
     margin:0;
@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
   .ReactModal__Overlay {
     opacity: 0;
     transition: opacity 200ms ease-in-out;
+    background-color:rgba(0, 0, 0, 0.2) !important;
 }
 
 .ReactModal__Overlay--after-open{
@@ -26,14 +27,14 @@ const GlobalStyle = createGlobalStyle`
 .ReactModal__Overlay--before-close{
     opacity: 0;
 }
-`;
+`
 const App = () => {
   return (
     <>
       <GlobalStyle></GlobalStyle>
       <Route exact path="/" component={Home} />
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App
