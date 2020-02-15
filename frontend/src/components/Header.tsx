@@ -153,7 +153,7 @@ const SnsLine = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1.2em 0em;
+  margin: 1.6em 0em;
 `
 const SnsStart = styled.div`
   font-family: "NanumSB";
