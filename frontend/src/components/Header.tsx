@@ -3,6 +3,7 @@ import styled from "styled-components"
 import Modal from "react-modal"
 import Input from "./Form/Input"
 import { observer } from "mobx-react-lite"
+import { useHistory } from "react-router-dom"
 import { authStoreContext } from "../stores/auth"
 const customStyles = {
   content: {
@@ -19,16 +20,21 @@ const customStyles = {
   }
 }
 const Header = observer(() => {
+  const history = useHistory()
   const authStore = useContext(authStoreContext)
   console.log(authStore.count)
   console.log(authStore.countUp())
 
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
+
   function openModal() {
     setModalIsOpen(true)
   }
   function closeModal() {
     setModalIsOpen(false)
+  }
+  function SignUp() {
+    history.push("/signup")
   }
   return (
     <Wrap>
@@ -43,13 +49,13 @@ const Header = observer(() => {
         <HeaderRight>
           <Button onClick={openModal}>로그인</Button>
         </HeaderRight>
-        <Modal closeTimeoutMS={200} appElement={document.getElementById("root") as HTMLElement} isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles} contentLabel="Example Modal">
+        <Modal closeTimeoutMS={200} appElement={document.getElementById("root") as HTMLElement} isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles} contentLabel="Signin Modal">
           <ModalTitle>로그인</ModalTitle>
           <X src={require("../assets/xIcon.png")} alt="x" width="24px" height="24px" onClick={closeModal} />
           <Input type="text" placeholder="이메일" style={{ margin: "7px 0px" }} />
           <Input type="password" placeholder="비밀번호" style={{ margin: "7px 0px" }} />
           <ModalLoginButton>로그인</ModalLoginButton>
-          <ModalSignUpButton>회원가입</ModalSignUpButton>
+          <ModalSignUpButton onClick={SignUp}>회원가입</ModalSignUpButton>
           <SnsLine>
             <Line></Line>
             <SnsStart>SNS로 시작하기</SnsStart>
