@@ -2,7 +2,7 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import Header from "../../components/Header"
 import Main from "../../components/Main/Main"
-function Home() {
+function SignUp() {
   return (
     <>
       <Helmet>
@@ -10,12 +10,12 @@ function Home() {
         <link rel="icon" href="/favicon2x.png" />
         <meta name="description" content="UniFarm" />
         <link rel="apple-touch-icon" href="/favicon2x.png" />
-        <title>{"토트넘"}</title>
+        <title>{"ㅁ토트넘"}</title>
       </Helmet>
       <Header></Header>
-      <Main></Main>
+      <div>안녕</div>
     </>
   )
 }
 
-export default Home
+export default SignUp
