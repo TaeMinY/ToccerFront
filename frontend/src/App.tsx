@@ -1,9 +1,8 @@
 import React from "react"
 import { Route } from "react-router-dom"
-import { Home } from "./pages"
+import { Home, SignUp } from "./pages"
 import { createGlobalStyle } from "styled-components"
 import "./App.css"
-import SignUp from "./pages/SignUp/signup"
 const GlobalStyle = createGlobalStyle`
 @font-face {
   font-family: "NanumSR";

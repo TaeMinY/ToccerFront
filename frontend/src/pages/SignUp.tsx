@@ -1,7 +1,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
-import Header from "../../components/Header"
-import Main from "../../components/Main/Main"
+import Header from "../components/Header"
+import SignUpWrap from "../components/SignUp/index"
 function SignUp() {
   return (
     <>
@@ -13,7 +13,7 @@ function SignUp() {
         <title>{"ㅁ토트넘"}</title>
       </Helmet>
       <Header></Header>
-      <div>안녕</div>
+      <SignUpWrap></SignUpWrap>
     </>
   )
 }

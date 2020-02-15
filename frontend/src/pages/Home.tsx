@@ -1,7 +1,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
-import Header from "../../components/Header"
-import Main from "../../components/Main/Main"
+import Header from "../components/Header"
+import MainWrap from "../components/Main/index"
 function Home() {
   return (
     <>
@@ -13,7 +13,7 @@ function Home() {
         <title>{"토트넘"}</title>
       </Helmet>
       <Header></Header>
-      <Main></Main>
+      <MainWrap></MainWrap>
     </>
   )
 }
