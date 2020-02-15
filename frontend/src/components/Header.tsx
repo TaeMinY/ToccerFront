@@ -1,7 +1,9 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import styled from "styled-components"
 import Modal from "react-modal"
 import Input from "./Form/Input"
+import { observer } from "mobx-react-lite"
+import { authStoreContext } from "../stores/auth"
 const customStyles = {
   content: {
     top: "50%",
@@ -16,7 +18,11 @@ const customStyles = {
     padding: "1.2em 1.8em 2.4em 1.8em"
   }
 }
-function Header() {
+const Header = observer(() => {
+  const authStore = useContext(authStoreContext)
+  console.log(authStore.count)
+  console.log(authStore.countUp())
+
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
   function openModal() {
     setModalIsOpen(true)
@@ -53,7 +59,7 @@ function Header() {
       </div>
     </Wrap>
   )
-}
+})
 
 export default Header
 

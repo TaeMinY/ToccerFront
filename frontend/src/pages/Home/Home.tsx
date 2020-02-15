@@ -1,7 +1,7 @@
-import React from "react";
-import { Helmet } from "react-helmet";
-import Header from "../components/Header";
-import Main from "../components/Main";
+import React from "react"
+import { Helmet } from "react-helmet"
+import Header from "../../components/Header"
+import Main from "../../components/Main"
 function Home() {
   return (
     <>
@@ -15,7 +15,7 @@ function Home() {
       <Header></Header>
       <Main></Main>
     </>
-  );
+  )
 }
 
-export default Home;
+export default Home
