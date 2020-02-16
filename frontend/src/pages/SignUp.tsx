@@ -10,7 +10,7 @@ function SignUp() {
         <link rel="icon" href="/favicon2x.png" />
         <meta name="description" content="UniFarm" />
         <link rel="apple-touch-icon" href="/favicon2x.png" />
-        <title>{"ㅁ토트넘"}</title>
+        <title>{"토트넘 - 회원가입"}</title>
       </Helmet>
       <Header></Header>
       <SignUpWrap></SignUpWrap>
