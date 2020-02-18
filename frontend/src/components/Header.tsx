@@ -36,11 +36,14 @@ const Header = observer(() => {
   function SignUp() {
     history.push("/signup")
   }
+  function Toccer() {
+    history.push("/")
+  }
   return (
     <Wrap>
       <div>
         <HeaderLeft>
-          <Title>토트넘 홋스퍼 FC</Title>
+          <Title onClick={Toccer}>Toccer</Title>
           <Menu>
             <li>커뮤니티</li>
             <li>경기</li>
@@ -74,6 +77,8 @@ const Wrap = styled.div`
   height: 70px;
   background-color: #0f204b;
   padding: 0% 5%;
+  position: sticky;
+  top: 0px;
   & > div {
     max-width: 1300px;
     height: 100%;
@@ -84,7 +89,7 @@ const Wrap = styled.div`
   }
 `
 const Title = styled.div`
-  width: 164px;
+  width: 60px;
   color: white;
   font-size: 20px;
 `
@@ -95,7 +100,7 @@ const Menu = styled.ul`
 
   & > li {
     width: 80px;
-    margin: 0 5px;
+    margin: 0 4px;
     text-align: center;
   }
 `
