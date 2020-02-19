@@ -21,8 +21,8 @@ app.use(express.json({ limit: "30mb" }))
 app.use(express.static("public"))
 app.use(express.static("upload"))
 app.use("/", Router)
-app.get("/", (req: express.Request, res: express.Response) => {
-  res.send("Hello World!!!!")
+app.post("/", (req: express.Request, res: express.Response) => {
+  res.send(req.body)
 })
 server.listen(PORT, () => {
   console.log(`http://localhost:${PORT} OnOn`)
