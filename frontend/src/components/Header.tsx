@@ -23,7 +23,6 @@ const Header = observer(() => {
   const history = useHistory()
   const authStore = useContext(authStoreContext)
   console.log(authStore.count)
-  console.log(authStore.countUp())
 
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
 
