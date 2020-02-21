@@ -139,6 +139,7 @@ const SignUp = () => {
               myImage()
             }}
             onKeyPress={signUpEnter}
+            style={{ display: "none" }}
           />
         </label>
         <Button onClick={signUp}>회원가입</Button>
