@@ -4,6 +4,7 @@ import { Home, SignUp } from "./pages"
 import { createGlobalStyle } from "styled-components"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import "swiper/css/swiper.css"
 
 import "./App.css"
 const GlobalStyle = createGlobalStyle`
@@ -96,6 +97,14 @@ a{
  .Toastify__progress-bar--default{
    background: #0f204b;
  }
+ .swiper-container{
+   height:100%;
+   width:100%;
+ }
+ .swiper-slide{
+   width:100% !important;
+ }
+ 
 `
 const App = () => {
   return (
