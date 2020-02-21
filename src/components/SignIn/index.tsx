@@ -8,7 +8,7 @@ import { authStoreContext } from "../../stores/auth"
 import { useHistory } from "react-router-dom"
 import { toast } from "react-toastify"
 
-const index = observer(() => {
+const SignIn = observer(() => {
   const [id, setId] = useState("")
   const [pwd, setPwd] = useState("")
   const customStyles = {
@@ -36,7 +36,12 @@ const index = observer(() => {
     history.push("/signup")
     authStore.state = false
   }
-  function SignIn() {
+  function signInEnter(e: any) {
+    if (e.key === "Enter") {
+      signIn()
+    }
+  }
+  function signIn() {
     authStore.signIn(id, pwd).then((result: any) => {
       console.log(result)
       if (result.data.state === true) {
@@ -63,6 +68,7 @@ const index = observer(() => {
           onChange={e => {
             setId(e.target.value)
           }}
+          onKeyPress={signInEnter}
         />
         <Input
           type="password"
@@ -72,8 +78,9 @@ const index = observer(() => {
           onChange={e => {
             setPwd(e.target.value)
           }}
+          onKeyPress={signInEnter}
         />
-        <ModalLoginButton onClick={SignIn}>로그인</ModalLoginButton>
+        <ModalLoginButton onClick={signIn}>로그인</ModalLoginButton>
         <ModalSignUpButton onClick={SignUp}>회원가입</ModalSignUpButton>
         <SnsLine>
           <Line></Line>
@@ -85,7 +92,7 @@ const index = observer(() => {
   )
 })
 
-export default index
+export default SignIn
 const ModalTitle = styled.div`
   font-size: 30px;
   color: #0f204b;
