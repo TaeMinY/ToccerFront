@@ -2,6 +2,9 @@ import React from "react"
 import { Route } from "react-router-dom"
 import { Home, SignUp } from "./pages"
 import { createGlobalStyle } from "styled-components"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
 import "./App.css"
 const GlobalStyle = createGlobalStyle`
 @font-face {
@@ -68,10 +71,36 @@ a{
 .ReactModal__Overlay--before-close{
     opacity: 0;
 }
+.Toastify__toast-container {
+  width: 320px;
+}
+.Toastify__toast-container--top-right{
+  margin-top:70px
+}
+.Toastify__toast--default {
+    background: #ffffff;
+    color: #0f204b;
+ }
+  .Toastify__toast--info {
+    background: #3498db;
+ }
+  .Toastify__toast--success {
+    background: #07bc0c;
+ }
+  .Toastify__toast--warning {
+    background: #f1c40f;
+ }
+  .Toastify__toast--error {
+    background: #e74c3c;
+ }
+ .Toastify__progress-bar--default{
+   background: #0f204b;
+ }
 `
 const App = () => {
   return (
     <>
+      <ToastContainer closeOnClick={false} position="top-right" />
       <GlobalStyle></GlobalStyle>
       <Route exact path="/" component={Home} />
       <Route exact path="/signup" component={SignUp} />
