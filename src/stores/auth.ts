@@ -15,6 +15,18 @@ class authStore {
       })
     return turn
   }
+  @action signIn: any = async (id: string, pwd: string, pwd2: string, username: string, email: string, terms: boolean, profile__expansion: string) => {
+    var turn: any
+    await Axios.Post("/account/signin", { id, pwd })
+      .then((result: any) => {
+        console.log(result)
+        turn = result
+      })
+      .catch((err: any) => {
+        console.log(err)
+      })
+    return turn
+  }
   @action profile: any = async (profile: any) => {
     var turn: any
     await Axios.Post("/account/profile", profile)
