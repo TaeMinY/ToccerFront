@@ -47,6 +47,11 @@ const SignUp = () => {
       reader.readAsDataURL(image.files![0])
     }
   }
+  function signUpEnter(e: any) {
+    if (e.key === "Enter") {
+      signUp()
+    }
+  }
   const [id, setId] = useState("")
   const [pwd, setPwd] = useState("")
   const [pwd2, setPwd2] = useState("")
@@ -80,6 +85,7 @@ const SignUp = () => {
           onChange={e => {
             setId(e.target.value)
           }}
+          onKeyPress={signUpEnter}
         />
         <div style={{ width: "100%", display: "flex", boxSizing: "border-box" }}>
           <Input
@@ -90,6 +96,7 @@ const SignUp = () => {
             onChange={e => {
               setPwd(e.target.value)
             }}
+            onKeyPress={signUpEnter}
           />
           <Input
             type="password"
@@ -99,6 +106,7 @@ const SignUp = () => {
             onChange={e => {
               setPwd2(e.target.value)
             }}
+            onKeyPress={signUpEnter}
           />
         </div>
         <Input
@@ -109,6 +117,7 @@ const SignUp = () => {
           onChange={e => {
             setUsername(e.target.value)
           }}
+          onKeyPress={signUpEnter}
         />
         <Input
           type="text"
@@ -118,6 +127,7 @@ const SignUp = () => {
           onChange={e => {
             setEmail(e.target.value)
           }}
+          onKeyPress={signUpEnter}
         />
         <label style={{ display: "flex", flexDirection: "column", width: "200px", margin: "15px 0px 0px 0px" }}>
           <img src={upload} alt="프로필" style={{ borderRadius: "20px", objectFit: "cover" }} width="100px" height="100px" id="image_section" />
@@ -128,6 +138,7 @@ const SignUp = () => {
             onChange={e => {
               myImage()
             }}
+            onKeyPress={signUpEnter}
           />
         </label>
         <Button onClick={signUp}>회원가입</Button>
