@@ -31,6 +31,7 @@ const index = observer(() => {
   }
   function SignUp() {
     history.push("/signup")
+    authStore.state = false
   }
   return (
     <>
