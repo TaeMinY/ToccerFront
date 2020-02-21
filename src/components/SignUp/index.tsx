@@ -4,11 +4,48 @@ import SignUpTerms from "./SignUpTerms"
 import Input from "../Form/Input"
 import upload from "../../assets/upload.svg"
 import { authStoreContext } from "../../stores/auth"
+import { toast } from "react-toastify"
+import { useHistory } from "react-router-dom"
 
 const SignUp = () => {
+  const history = useHistory()
   const authStore = useContext(authStoreContext)
   function signUp() {
-    authStore.signUp(id, pwd, pwd2, username, email, profile, terms)
+    const image: HTMLInputElement = document.getElementById("bin") as HTMLInputElement
+    console.log(image.value)
+    const pathpoint = image.value.lastIndexOf(".")
+    const filepoint = image.value.substring(pathpoint + 1, image.value.length)
+    const filetype: string = filepoint.toLocaleLowerCase()
+    authStore.signUp(id, pwd, pwd2, username, email, terms, filetype).then((result: any) => {
+      console.log(result)
+      if (result.data.state === true) {
+        //성공
+        const fd: FormData = new FormData()
+        fd.append("name", result.data.profileText)
+        fd.append("ex", filetype)
+        fd.append("bin", image.files![0])
+        authStore.profile(fd).then((result: any) => {
+          if (result.data.state) {
+            toast("회원가입에 성공하셨습니다.", { autoClose: 7000 })
+            history.push("/")
+          }
+        })
+      } else {
+        //실패
+        toast.error(result.data.result, { autoClose: 5000 })
+      }
+    })
+  }
+  function myImage() {
+    const image: HTMLInputElement = document.getElementById("bin") as HTMLInputElement
+    const image_section: HTMLImageElement = document.getElementById("image_section") as HTMLImageElement
+    if (image.files![0]) {
+      var reader = new FileReader()
+      reader.onload = function(e?: any) {
+        image_section.src = e.target.result
+      }
+      reader.readAsDataURL(image.files![0])
+    }
   }
   const [id, setId] = useState("")
   const [pwd, setPwd] = useState("")
@@ -38,7 +75,7 @@ const SignUp = () => {
         </Label>
         <Input
           type="text"
-          placeholder="아이디 ( 6 ~ 12 )"
+          placeholder="아이디 ( 4 ~ 15 )"
           style={{ margin: "7px 0px" }}
           value={id}
           onChange={e => {
@@ -48,7 +85,7 @@ const SignUp = () => {
         <div style={{ width: "100%", display: "flex", boxSizing: "border-box" }}>
           <Input
             type="password"
-            placeholder="비밀번호 ( 6 ~ 12 )"
+            placeholder="비밀번호 ( 6 ~ 15 )"
             style={{ margin: "7px 3px 7px 0px" }}
             value={pwd}
             onChange={e => {
@@ -67,7 +104,7 @@ const SignUp = () => {
         </div>
         <Input
           type="text"
-          placeholder="닉네임 ( 4 ~ 12 )"
+          placeholder="닉네임 ( 2 ~ 12 )"
           style={{ margin: "7px 0px" }}
           value={username}
           onChange={e => {
@@ -84,10 +121,16 @@ const SignUp = () => {
           }}
         />
         <label style={{ display: "flex", flexDirection: "column", width: "200px", margin: "15px 0px 0px 0px" }}>
-          <img src={upload} alt="프로필" style={{ borderRadius: "20px" }} width="100px" />
-          <input type="file" accept="image/*" />
+          <img src={upload} alt="프로필" style={{ borderRadius: "20px", objectFit: "cover" }} width="100px" height="100px" id="image_section" />
+          <input
+            type="file"
+            id="bin"
+            accept="image/gif,image/jpeg,image/png"
+            onChange={e => {
+              myImage()
+            }}
+          />
         </label>
-        <Erorr></Erorr>
         <Button onClick={signUp}>회원가입</Button>
       </div>
     </Wrap>
@@ -141,7 +184,7 @@ const Label = styled.label`
 const Button = styled.div`
   width: 100%;
   height: 40px;
-  margin: 10px 0px 70px 0px;
+  margin: 25px 0px 70px 0px;
   border-radius: 20px;
   background-color: #0f204b;
   color: white;
@@ -149,12 +192,4 @@ const Button = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 15px;
-`
-const Erorr = styled.div`
-  font-size: 15px;
-  height: 20px;
-  margin-top: 10px;
-  color: red;
-  width: 100%;
-  text-align: center;
 `
