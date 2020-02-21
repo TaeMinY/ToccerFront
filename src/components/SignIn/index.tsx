@@ -6,8 +6,11 @@ import { observer } from "mobx-react-lite"
 
 import { authStoreContext } from "../../stores/auth"
 import { useHistory } from "react-router-dom"
+import { toast } from "react-toastify"
 
 const index = observer(() => {
+  const [id, setId] = useState("")
+  const [pwd, setPwd] = useState("")
   const customStyles = {
     content: {
       top: "50%",
@@ -33,14 +36,44 @@ const index = observer(() => {
     history.push("/signup")
     authStore.state = false
   }
+  function SignIn() {
+    authStore.signIn(id, pwd).then((result: any) => {
+      console.log(result)
+      if (result.data.state === true) {
+        //성공
+        toast("로그인에 성공하셨습니다.", { autoClose: 6000 })
+        //token
+        history.push("/main")
+      } else {
+        //실패
+        toast.error(result.data.result, { autoClose: 5000 })
+      }
+    })
+  }
   return (
     <>
       <Modal closeTimeoutMS={200} appElement={document.getElementById("root") as HTMLElement} isOpen={authStore.state} onRequestClose={closeModal} style={customStyles} contentLabel="Signin Modal">
         <ModalTitle>로그인</ModalTitle>
         <X src={require("../../assets/xIcon.png")} alt="x" width="24px" height="24px" onClick={closeModal} />
-        <Input type="text" placeholder="이메일" style={{ margin: "7px 0px" }} />
-        <Input type="password" placeholder="비밀번호" style={{ margin: "7px 0px" }} />
-        <ModalLoginButton>로그인</ModalLoginButton>
+        <Input
+          type="text"
+          placeholder="아이디"
+          style={{ margin: "7px 0px" }}
+          value={id}
+          onChange={e => {
+            setId(e.target.value)
+          }}
+        />
+        <Input
+          type="password"
+          placeholder="비밀번호"
+          style={{ margin: "7px 0px" }}
+          value={pwd}
+          onChange={e => {
+            setPwd(e.target.value)
+          }}
+        />
+        <ModalLoginButton onClick={SignIn}>로그인</ModalLoginButton>
         <ModalSignUpButton onClick={SignUp}>회원가입</ModalSignUpButton>
         <SnsLine>
           <Line></Line>

@@ -26,7 +26,7 @@ const SignUp = () => {
         fd.append("bin", image.files![0])
         authStore.profile(fd).then((result: any) => {
           if (result.data.state) {
-            toast("회원가입에 성공하셨습니다.", { autoClose: 7000 })
+            toast("회원가입에 성공하셨습니다.", { autoClose: 6000 })
             history.push("/")
           }
         })
@@ -52,7 +52,6 @@ const SignUp = () => {
   const [pwd2, setPwd2] = useState("")
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
-  const [profile, setProfile] = useState({})
   const [terms, setTerms] = useState(false)
 
   return (
