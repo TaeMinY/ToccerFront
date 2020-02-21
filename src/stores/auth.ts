@@ -2,7 +2,7 @@ import { observable, action } from "mobx"
 import { createContext } from "react"
 import Axios from "../libs/axios"
 class authStore {
-  @observable count: number = 2
+  @observable state: boolean = false
 
   @action signUp: any = async (id: string, pwd: string, pwd2: string, username: string, email: string, terms: boolean, profile__expansion: string) => {
     var turn: any
