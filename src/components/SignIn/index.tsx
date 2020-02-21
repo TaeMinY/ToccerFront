@@ -48,6 +48,7 @@ const SignIn = observer(() => {
         //성공
         toast("로그인에 성공하셨습니다.", { autoClose: 6000 })
         //token
+        localStorage.setItem("token", result.data.token)
         history.push("/main")
       } else {
         //실패
