@@ -61,6 +61,7 @@ a{
 }
 .ReactModal__Overlay {
   opacity: 0;
+  z-index:10000000;
   transition: opacity 200ms ease-in-out;
   background-color:rgba(0, 0, 0, 0.2) !important;
 }
