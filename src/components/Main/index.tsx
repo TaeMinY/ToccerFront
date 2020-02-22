@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import Swiper from "react-id-swiper"
 import Notice from "./Notice"
+import Chat from "./Chat"
 function Main() {
   const params = {
     autoplay: {
@@ -37,8 +38,9 @@ function Main() {
             <SwiperShadow></SwiperShadow>
           </SwiperItem>
         </Swiper>
-        <div style={{ width: "100%" }}>
+        <div style={{ width: "100%", display: "flex", flexWrap: "wrap" }}>
           <Notice></Notice>
+          <Chat></Chat>
         </div>
       </div>
     </Wrap>
