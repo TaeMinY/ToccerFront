@@ -22,18 +22,18 @@ function Main() {
       <div>
         <Swiper {...params}>
           <SwiperItem>
-            <img src={require("../../assets/swiper__one.png")} alt="swiper1" width="100%" height="100%" style={{ objectFit: "cover" }} />
-            <SwiperText>토트넘</SwiperText>
+            <img src={require("../../assets/swiper__one.png")} alt="swiper1" width="100%" height="100%" style={{ objectFit: "contain" }} />
+            <SwiperText>토트넘 일정 변경</SwiperText>
             <SwiperShadow></SwiperShadow>
           </SwiperItem>
           <SwiperItem>
-            <img src={require("../../assets/swiper__one.png")} alt="swiper1" width="100%" height="100%" style={{ objectFit: "cover" }} />
-            <SwiperText>토트넘</SwiperText>
+            <img src={require("../../assets/swiper__two.png")} alt="swiper1" width="100%" height="100%" style={{ objectFit: "contain" }} />
+            <SwiperText>2월 22일 토트넘VS첼시</SwiperText>
             <SwiperShadow></SwiperShadow>
           </SwiperItem>
           <SwiperItem>
-            <img src={require("../../assets/swiper__one.png")} alt="swiper1" width="100%" height="100%" style={{ objectFit: "cover" }} />
-            <SwiperText>토트넘</SwiperText>
+            <img src={require("../../assets/swiper__three.png")} alt="swiper1" width="100%" height="100%" style={{ objectFit: "contain" }} />
+            <SwiperText>토트넘 챔스 16강 0:1 패배</SwiperText>
             <SwiperShadow></SwiperShadow>
           </SwiperItem>
         </Swiper>
@@ -68,6 +68,7 @@ const SwiperItem = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
+  background-color: rgba(0, 0, 0);
 `
 const SwiperShadow = styled.div`
   background-color: rgba(0, 0, 0, 0.25);
@@ -82,8 +83,10 @@ const SwiperText = styled.div`
   bottom: 10%;
   left: 0;
   right: 0;
-  font-size: 40px;
+  font-size: 36px;
   z-index: 100;
   text-align: center;
   color: white;
+  word-break: keep-all;
+  font-family: "NanumSRB";
 `

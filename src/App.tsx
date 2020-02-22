@@ -105,6 +105,9 @@ a{
  .swiper-slide{
    width:100% !important;
  }
+ .swiper-scrollbar-drag{
+   background-color :#007aff;
+ }
  
 `
 const App = () => {
