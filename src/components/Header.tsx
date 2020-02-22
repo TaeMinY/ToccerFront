@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { observer } from "mobx-react-lite"
 import { useHistory } from "react-router-dom"
 import { authStoreContext } from "../stores/auth"
-import SignIn from "../components/SignIn/index"
+import SignIn from "./SignIn/Index"
 const Header = observer(() => {
   const history = useHistory()
   const authStore = useContext(authStoreContext)
@@ -42,6 +42,7 @@ const Wrap = styled.div`
   background-color: #0f204b;
   padding: 0% 5%;
   position: sticky;
+  z-index: 1000;
   top: 0px;
   & > div {
     max-width: 1300px;

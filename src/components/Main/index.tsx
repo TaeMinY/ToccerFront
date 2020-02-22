@@ -50,6 +50,7 @@ export default Main
 const Wrap = styled.div`
   width: 100%;
   padding: 0% 5%;
+  height: 10000px;
   & > div {
     max-width: 1300px;
     display: flex;
