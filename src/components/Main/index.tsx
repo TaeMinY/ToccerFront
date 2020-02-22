@@ -21,12 +21,16 @@ function Main() {
     <Wrap>
       <div>
         <Swiper {...params}>
-          <div>Slide #1</div>
-          <div>Slide #2</div>
-          <div>Slide #3</div>
-          <div>Slide #4</div>
-          <div>Slide #5</div>
+          <img src={require("../../assets/swiper__one.png")} alt="swiper1" width="100%" height="100%" style={{ objectFit: "cover" }} />
+          <img src={require("../../assets/swiper__one.png")} alt="swiper1" width="100%" height="100%" style={{ objectFit: "cover" }} />
+          <img src={require("../../assets/swiper__one.png")} alt="swiper1" width="100%" height="100%" style={{ objectFit: "cover" }} />
+          <img src={require("../../assets/swiper__one.png")} alt="swiper1" width="100%" height="100%" style={{ objectFit: "cover" }} />
+          <img src={require("../../assets/swiper__one.png")} alt="swiper1" width="100%" height="100%" style={{ objectFit: "cover" }} />
         </Swiper>
+        <div>dd</div>
+        <div>dd</div>
+
+        <div>dd</div>
       </div>
     </Wrap>
   )
@@ -37,13 +41,16 @@ export default Main
 const Wrap = styled.div`
   width: 100%;
   padding: 0% 5%;
-  height: 500px;
   & > div {
     max-width: 1300px;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0% auto;
+    flex-direction: column;
+    margin: 0px auto;
+    & > *:nth-child(1) {
+      margin: 55px 0px;
+      height: 500px;
+    }
   }
 `
