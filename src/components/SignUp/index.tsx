@@ -74,6 +74,7 @@ const SignUp = () => {
             onChange={() => {
               setTerms(!terms)
             }}
+            style={{ cursor: "pointer" }}
           />
           개인정보 처리 방침 및 커뮤니티 약관 동의
         </Label>
@@ -130,7 +131,7 @@ const SignUp = () => {
           onKeyPress={signUpEnter}
         />
         <label style={{ display: "flex", flexDirection: "column", width: "200px", margin: "15px 0px 0px 0px" }}>
-          <img src={upload} alt="프로필" style={{ borderRadius: "20px", objectFit: "cover" }} width="100px" height="100px" id="image_section" />
+          <img src={upload} alt="프로필" style={{ borderRadius: "20px", objectFit: "cover", cursor: "pointer" }} width="100px" height="100px" id="image_section" />
           <input
             type="file"
             id="bin"
@@ -191,6 +192,7 @@ const Label = styled.label`
   width: 100%;
   margin-top: 4px;
   margin-bottom: 10px;
+  cursor: pointer;
 `
 const Button = styled.div`
   width: 100%;
@@ -203,4 +205,5 @@ const Button = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 15px;
+  cursor: pointer;
 `

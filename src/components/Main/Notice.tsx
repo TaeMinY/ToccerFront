@@ -47,6 +47,7 @@ const TitleView = styled.div`
   justify-content: center;
   align-items: center;
   padding: 5px 9.5px;
+  cursor: pointer;
   transition: 0.2s;
   &:hover {
     background-color: #0f204b;

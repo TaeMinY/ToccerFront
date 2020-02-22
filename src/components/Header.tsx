@@ -57,11 +57,13 @@ const Title = styled.div`
   width: 60px;
   color: white;
   font-size: 20px;
+  cursor: pointer;
 `
 const Menu = styled.ul`
   display: flex;
   color: white;
   list-style: none;
+  cursor: pointer;
 
   & > li {
     width: 80px;
@@ -80,6 +82,7 @@ const Button = styled.div`
   align-items: center;
   font-size: 13px;
   font-weight: 400;
+  cursor: pointer;
 `
 const HeaderLeft = styled.div`
   display: flex;

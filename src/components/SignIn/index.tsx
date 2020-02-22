@@ -104,6 +104,7 @@ const X = styled.img`
   position: absolute;
   top: 2.1em;
   right: 1.8em;
+  cursor: pointer;
 `
 const ModalLoginButton = styled.div`
   width: 100%;
@@ -118,6 +119,7 @@ const ModalLoginButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `
 const ModalSignUpButton = styled.div`
   width: 100%;
@@ -132,6 +134,7 @@ const ModalSignUpButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `
 const Line = styled.div`
   height: 1px;
