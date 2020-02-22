@@ -1,5 +1,9 @@
-import React, { useState } from "react"
+import React, { useState, useContext, useEffect } from "react"
+import { useHistory } from "react-router-dom"
 import styled from "styled-components"
+import { observer } from "mobx-react-lite"
+import { authStoreContext } from "../../stores/auth"
+
 function Text() {
   return (
     <>
@@ -9,7 +13,7 @@ function Text() {
       </Notice>
       {[1, 2, 3, 4, 5, 6, 85, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].splice(1, 8).map((data, index) => {
         return (
-          <BoradText>
+          <BoradText key={index}>
             <img src={require("../../assets/ico.gif")} alt="점" width="3px" height="3px;" style={{ backgroundColor: "black", marginRight: "10px" }} />
             <BoradTitle>게시판테스트</BoradTitle>
           </BoradText>
@@ -18,13 +22,32 @@ function Text() {
     </>
   )
 }
-function Board() {
+const Board = observer(() => {
+  const authStore = useContext(authStoreContext)
+  const [getToken, setToken] = useState(false)
+  const history = useHistory()
+  function HistoryWrite() {
+    history.push("/write")
+  }
+  function token(): any {
+    authStore.token(localStorage.getItem("token")).then((result: any) => {
+      if (result.data.state) {
+        console.log("성공")
+        setToken(true)
+      } else {
+        setToken(false)
+      }
+    })
+  }
+  useEffect(() => {
+    token()
+  }, [])
   return (
     <Wrap>
       <TitleWrap>
         <Title>게시판</Title>
         <div style={{ display: "flex" }}>
-          <TitleCreate>글쓰기</TitleCreate>
+          {getToken == true ? <TitleCreate onClick={HistoryWrite}>글쓰기</TitleCreate> : ""}
           <TitleView>더보기</TitleView>
         </div>
       </TitleWrap>
@@ -35,7 +58,7 @@ function Board() {
       </TitleLine>
     </Wrap>
   )
-}
+})
 
 export default Board
 
