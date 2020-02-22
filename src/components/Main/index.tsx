@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import Swiper from "react-id-swiper"
-
+import Notice from "./Notice"
 function Main() {
   const params = {
     autoplay: {
@@ -22,25 +22,24 @@ function Main() {
       <div>
         <Swiper {...params}>
           <SwiperItem>
-            <img src={require("../../assets/swiper__one.png")} alt="swiper1" width="100%" height="100%" style={{ objectFit: "contain" }} />
+            <img src={require("../../assets/swiper__one.png")} alt="swiper1" width="100%" height="100%" style={{ objectFit: "cover", objectPosition: "50% 50%" }} />
             <SwiperText>토트넘 일정 변경</SwiperText>
             <SwiperShadow></SwiperShadow>
           </SwiperItem>
           <SwiperItem>
-            <img src={require("../../assets/swiper__two.png")} alt="swiper1" width="100%" height="100%" style={{ objectFit: "contain" }} />
+            <img src={require("../../assets/swiper__two.png")} alt="swiper1" width="100%" height="100%" style={{ objectFit: "cover", objectPosition: "50% 0%" }} />
             <SwiperText>2월 22일 토트넘VS첼시</SwiperText>
             <SwiperShadow></SwiperShadow>
           </SwiperItem>
           <SwiperItem>
-            <img src={require("../../assets/swiper__three.png")} alt="swiper1" width="100%" height="100%" style={{ objectFit: "contain" }} />
+            <img src={require("../../assets/swiper__three.png")} alt="swiper1" width="100%" height="100%" style={{ objectFit: "cover", objectPosition: "50% 0%" }} />
             <SwiperText>토트넘 챔스 16강 0:1 패배</SwiperText>
             <SwiperShadow></SwiperShadow>
           </SwiperItem>
         </Swiper>
-        <div>dd</div>
-        <div>dd</div>
-
-        <div>dd</div>
+        <div style={{ width: "100%" }}>
+          <Notice></Notice>
+        </div>
       </div>
     </Wrap>
   )
@@ -71,7 +70,7 @@ const SwiperItem = styled.div`
   background-color: rgba(0, 0, 0);
 `
 const SwiperShadow = styled.div`
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
   top: 0;
   left: 0;
