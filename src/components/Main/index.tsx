@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import Swiper from "react-id-swiper"
-import Notice from "./Notice"
+import Board from "./Board"
 import Chat from "./Chat"
 function Main() {
   const params = {
@@ -38,10 +38,10 @@ function Main() {
             <SwiperShadow></SwiperShadow>
           </SwiperItem>
         </Swiper>
-        <div style={{ width: "100%", display: "flex", flexWrap: "wrap" }}>
-          <Notice></Notice>
+        <Text style={{ width: "100%", display: "flex" }}>
+          <Board></Board>
           <Chat></Chat>
-        </div>
+        </Text>
       </div>
     </Wrap>
   )
@@ -91,4 +91,9 @@ const SwiperText = styled.div`
   color: white;
   word-break: keep-all;
   font-family: "NanumSRB";
+`
+const Text = styled.div`
+  @media only screen and (max-width: 1445px) {
+    flex-direction: column;
+  }
 `

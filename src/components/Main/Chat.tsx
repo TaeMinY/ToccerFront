@@ -40,7 +40,6 @@ const TitleLine = styled.div`
   width: 100%;
   height: 100%;
   border-top: 1.5px solid black;
-  border-bottom: 1.5px solid black;
   margin-top: 5px;
   background: rgb(248, 248, 248);
   display: flex;
