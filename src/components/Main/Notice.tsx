@@ -4,7 +4,7 @@ function Notice() {
   return (
     <Wrap>
       <TitleWrap>
-        <Title>공지사항</Title>
+        <Title>게시판</Title>
         <TitleView>더보기</TitleView>
       </TitleWrap>
       <TitleLine></TitleLine>
@@ -15,8 +15,12 @@ function Notice() {
 export default Notice
 
 const Wrap = styled.div`
-  width: 100%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 980px;
   height: 300px;
+  flex-direction: column;
 `
 const Title = styled.div`
   font-size: 20px;
@@ -34,7 +38,7 @@ const TitleLine = styled.div`
 `
 const TitleWrap = styled.div`
   display: flex;
-  height: 28px;
+  min-height: 28px;
   justify-content: space-between;
 `
 const TitleView = styled.div`
