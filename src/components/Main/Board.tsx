@@ -7,10 +7,14 @@ function Text() {
         <NoticeBox>공지</NoticeBox>
         <NoticeText>토트넘 PL 19 ~ 20 우승 실패 확정</NoticeText>
       </Notice>
-      <BoradText>
-        <img src={require("../../assets/ico.gif")} alt="점" width="3px" height="3px;" style={{ backgroundColor: "black", marginRight: "10px" }} />
-        <BoradTitle>게시판테스트</BoradTitle>
-      </BoradText>
+      {[1, 2, 3, 4, 5, 6, 85, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].splice(1, 8).map((data, index) => {
+        return (
+          <BoradText>
+            <img src={require("../../assets/ico.gif")} alt="점" width="3px" height="3px;" style={{ backgroundColor: "black", marginRight: "10px" }} />
+            <BoradTitle>게시판테스트</BoradTitle>
+          </BoradText>
+        )
+      })}
     </>
   )
 }
@@ -19,7 +23,10 @@ function Board() {
     <Wrap>
       <TitleWrap>
         <Title>게시판</Title>
-        <TitleView>더보기</TitleView>
+        <div style={{ display: "flex" }}>
+          <TitleCreate>글쓰기</TitleCreate>
+          <TitleView>더보기</TitleView>
+        </div>
       </TitleWrap>
       <TitleLine>
         <TextWrap>
@@ -39,6 +46,7 @@ const Wrap = styled.div`
   min-width: 980px;
   height: 370px;
   flex-direction: column;
+  overflow-y: hidden;
   @media only screen and (max-width: 1445px) {
     min-width: 100%;
   }
@@ -63,7 +71,7 @@ const TitleWrap = styled.div`
   min-height: 28px;
   justify-content: space-between;
 `
-const TitleView = styled.div`
+const TitleCreate = styled.div`
   font-size: 12px;
   border-radius: 5px;
   border: 1px solid #0f204b;
@@ -74,11 +82,25 @@ const TitleView = styled.div`
   align-items: center;
   padding: 5px 9.5px;
   cursor: pointer;
-  transition: 0.2s;
-  &:hover {
-    background-color: #0f204b;
-    color: white;
-  }
+  font-weight: 800;
+  margin-left: 5px;
+`
+
+const TitleView = styled.div`
+  font-size: 12px;
+  border-radius: 5px;
+  border: 1px solid #0f204b;
+  width: 62px;
+  height: 27px;
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 9.5px;
+  cursor: pointer;
+  font-weight: 800;
+  margin-left: 5px;
+  background-color: #0f204b;
 `
 const TextWrap = styled.div`
   width: 100%;

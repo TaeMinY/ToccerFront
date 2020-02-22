@@ -38,7 +38,7 @@ export default Header
 
 const Wrap = styled.div`
   width: 100%;
-  height: 70px;
+  height: 60px;
   background-color: #0f204b;
   padding: 0% 5%;
   position: sticky;
@@ -73,7 +73,7 @@ const Menu = styled.ul`
 `
 const Button = styled.div`
   width: 78px;
-  height: 38px;
+  height: 34px;
   color: #0f204b;
   background-color: white;
   border-radius: 20px;
