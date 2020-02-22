@@ -38,6 +38,17 @@ class authStore {
       })
     return turn
   }
+  @action token: any = async (token: any) => {
+    var turn: any
+    await Axios.Post("/account/token", { token: token })
+      .then((result: any) => {
+        turn = result
+      })
+      .catch((err: any) => {
+        console.log(err)
+      })
+    return turn
+  }
 }
 //아이디 중복 해결하기
 export const authStoreContext = createContext(new authStore())
