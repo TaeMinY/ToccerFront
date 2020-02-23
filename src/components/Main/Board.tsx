@@ -22,22 +22,17 @@ function Text() {
     </>
   )
 }
-const Board = observer(() => {
+interface props {
+  expansion: boolean
+}
+const Board = observer(({ expansion }: props) => {
   const authStore = useContext(authStoreContext)
-  const [getToken, setToken] = useState(false)
   const history = useHistory()
   function HistoryWrite() {
     history.push("/write")
   }
   function token(): any {
-    authStore.token(localStorage.getItem("token")).then((result: any) => {
-      if (result.data.state) {
-        console.log("성공")
-        setToken(true)
-      } else {
-        setToken(false)
-      }
-    })
+    authStore.token(localStorage.getItem("token"))
   }
   useEffect(() => {
     token()
@@ -45,10 +40,10 @@ const Board = observer(() => {
   return (
     <Wrap>
       <TitleWrap>
-        <Title>게시판</Title>
+        <Title expansion={expansion}>게시판</Title>
         <div style={{ display: "flex" }}>
-          {getToken == true ? <TitleCreate onClick={HistoryWrite}>글쓰기</TitleCreate> : ""}
-          <TitleView>더보기</TitleView>
+          {authStore.tokenState == true ? <TitleCreate onClick={HistoryWrite}>글쓰기</TitleCreate> : ""}
+          <TitleView expansion={expansion}>더보기</TitleView>
         </div>
       </TitleWrap>
       <TitleLine>
@@ -75,7 +70,9 @@ const Wrap = styled.div`
   }
 `
 const Title = styled.div`
-  font-size: 20px;
+  font-size: ${(props: props) => (props.expansion == true ? "28px" : "20px")};
+  margin-top: ${(props: props) => (props.expansion == true ? "10px" : "0px")};
+  margin-bottom: ${(props: props) => (props.expansion == true ? "10px" : "0px")};
   font-family: "NanumSRB";
   display: flex;
   justify-content: center;
@@ -115,7 +112,7 @@ const TitleView = styled.div`
   border: 1px solid #0f204b;
   width: 62px;
   height: 27px;
-  display: flex;
+  display: ${(props: props) => (props.expansion == true ? "none" : "flex")};
   color: white;
   justify-content: center;
   align-items: center;
