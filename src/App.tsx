@@ -1,11 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Route } from "react-router-dom"
-import { Home, SignUp } from "./pages"
+import { Home, SignUp, Board } from "./pages"
 import { createGlobalStyle } from "styled-components"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import "swiper/css/swiper.css"
-
 import "./App.css"
 const GlobalStyle = createGlobalStyle`
 @font-face {
@@ -117,6 +116,7 @@ const App = () => {
       <GlobalStyle></GlobalStyle>
       <Route exact path="/" component={Home} />
       <Route exact path="/signup" component={SignUp} />
+      <Route exact path="/board" component={Board} />
     </>
   )
 }
