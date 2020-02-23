@@ -1,20 +1,29 @@
-import React, { useState, useContext } from "react"
+import React, { useState, useContext, useEffect } from "react"
 import styled from "styled-components"
 
 import { observer } from "mobx-react-lite"
-import { useHistory } from "react-router-dom"
 import { authStoreContext } from "../stores/auth"
+import { useHistory } from "react-router-dom"
 import SignIn from "./SignIn/Index"
 const Header = observer(() => {
   const history = useHistory()
   const authStore = useContext(authStoreContext)
-
   function openModal() {
     authStore.state = true
   }
   function Toccer() {
     history.push("/")
   }
+  function out() {
+    localStorage.removeItem("token")
+    token()
+  }
+  function token(): any {
+    authStore.token(localStorage.getItem("token"))
+  }
+  useEffect(() => {
+    token()
+  }, [])
   return (
     <Wrap>
       <div>
@@ -25,9 +34,7 @@ const Header = observer(() => {
             <li>경기</li>
           </Menu>
         </HeaderLeft>
-        <HeaderRight>
-          <Button onClick={openModal}>로그인</Button>
-        </HeaderRight>
+        <HeaderRight>{authStore.tokenState == true ? <Button onClick={out}>로그아웃</Button> : <Button onClick={openModal}>로그인</Button>}</HeaderRight>
         <SignIn></SignIn>
       </div>
     </Wrap>
