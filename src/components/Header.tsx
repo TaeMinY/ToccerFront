@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useContext, useEffect } from "react"
 import styled from "styled-components"
 
 import { observer } from "mobx-react-lite"
@@ -22,7 +22,8 @@ const Header = observer(() => {
     authStore.token(localStorage.getItem("token"))
   }
   useEffect(() => {
-    token()
+    const authStore = useContext(authStoreContext)
+    authStore.token(localStorage.getItem("token"))
   }, [])
   return (
     <Wrap>
@@ -34,7 +35,7 @@ const Header = observer(() => {
             <li>경기</li>
           </Menu>
         </HeaderLeft>
-        <HeaderRight>{authStore.tokenState == true ? <Button onClick={out}>로그아웃</Button> : <Button onClick={openModal}>로그인</Button>}</HeaderRight>
+        <HeaderRight>{authStore.tokenState === true ? <Button onClick={out}>로그아웃</Button> : <Button onClick={openModal}>로그인</Button>}</HeaderRight>
         <SignIn></SignIn>
       </div>
     </Wrap>

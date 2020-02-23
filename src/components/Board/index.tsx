@@ -1,6 +1,5 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
-import Swiper from "react-id-swiper"
 import Board from "../Main/Board"
 function Main() {
   return (

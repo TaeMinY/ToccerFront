@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React from "react"
 import { Route } from "react-router-dom"
 import { Home, SignUp, Board } from "./pages"
 import { createGlobalStyle } from "styled-components"

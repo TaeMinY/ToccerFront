@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useContext, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import { observer } from "mobx-react-lite"
@@ -31,18 +31,16 @@ const Board = observer(({ expansion }: props) => {
   function HistoryWrite() {
     history.push("/write")
   }
-  function token(): any {
-    authStore.token(localStorage.getItem("token"))
-  }
   useEffect(() => {
-    token()
+    const authStore = useContext(authStoreContext)
+    authStore.token(localStorage.getItem("token"))
   }, [])
   return (
     <Wrap>
       <TitleWrap>
         <Title expansion={expansion}>게시판</Title>
         <div style={{ display: "flex" }}>
-          {authStore.tokenState == true ? <TitleCreate onClick={HistoryWrite}>글쓰기</TitleCreate> : ""}
+          {authStore.tokenState === true ? <TitleCreate onClick={HistoryWrite}>글쓰기</TitleCreate> : ""}
           <TitleView expansion={expansion}>더보기</TitleView>
         </div>
       </TitleWrap>
@@ -70,9 +68,9 @@ const Wrap = styled.div`
   }
 `
 const Title = styled.div`
-  font-size: ${(props: props) => (props.expansion == true ? "28px" : "20px")};
-  margin-top: ${(props: props) => (props.expansion == true ? "10px" : "0px")};
-  margin-bottom: ${(props: props) => (props.expansion == true ? "10px" : "0px")};
+  font-size: ${(props: props) => (props.expansion === true ? "28px" : "20px")};
+  margin-top: ${(props: props) => (props.expansion === true ? "10px" : "0px")};
+  margin-bottom: ${(props: props) => (props.expansion === true ? "10px" : "0px")};
   font-family: "NanumSRB";
   display: flex;
   justify-content: center;
@@ -112,7 +110,7 @@ const TitleView = styled.div`
   border: 1px solid #0f204b;
   width: 62px;
   height: 27px;
-  display: ${(props: props) => (props.expansion == true ? "none" : "flex")};
+  display: ${(props: props) => (props.expansion === true ? "none" : "flex")};
   color: white;
   justify-content: center;
   align-items: center;
