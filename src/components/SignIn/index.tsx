@@ -49,12 +49,17 @@ const SignIn = observer(() => {
         toast("로그인에 성공하셨습니다.", { autoClose: 6000 })
         //token
         localStorage.setItem("token", result.data.token)
+        token()
+        authStore.state = false
         history.push("/")
       } else {
         //실패
         toast.error(result.data.result, { autoClose: 5000 })
       }
     })
+  }
+  function token(): any {
+    authStore.token(localStorage.getItem("token"))
   }
   return (
     <>

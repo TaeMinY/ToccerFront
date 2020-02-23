@@ -39,7 +39,7 @@ function Main() {
           </SwiperItem>
         </Swiper>
         <Text style={{ width: "100%", display: "flex" }}>
-          <Board></Board>
+          <Board expansion={false}></Board>
           <Chat></Chat>
         </Text>
       </div>

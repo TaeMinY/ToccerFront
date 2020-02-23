@@ -1,7 +1,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import Header from "../components/Header"
-import BoradWrap from "../components/Borad/index"
+import BoradWrap from "../components/Board/index"
 function Board() {
   return (
     <>
