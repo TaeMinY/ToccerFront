@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-
+import Input from "../Form/Input"
 function PostWrite() {
   return (
     <>
@@ -10,6 +10,25 @@ function PostWrite() {
             <Title>게시판 등록</Title>
           </TitleWrap>
           <TitleLine></TitleLine>
+          <Input
+            type="text"
+            placeholder="제목 ( 4 ~ 20 )"
+            style={{ margin: "21px 0px 7px 0px" }}
+            // value={id}
+            // onChange={e => {
+            //   setId(e.target.value)
+            // }}
+          />
+          <InputText
+            rows={25}
+            placeholder="내용"
+            style={{ margin: "7px 0px" }}
+            // value={id}
+            // onChange={e => {
+            //   setId(e.target.value)
+            // }}
+          />
+          <Button>등록</Button>
         </div>
       </Wrap>
     </>
@@ -41,7 +60,6 @@ const TitleWrap = styled.div`
 const Wrap = styled.div`
   width: 100%;
   padding: 0% 5%;
-  height: 10000px;
   & > div {
     max-width: 800px;
     display: flex;
@@ -53,4 +71,27 @@ const Wrap = styled.div`
       margin: 55px 0px 0px 0px;
     }
   }
+`
+const InputText = styled.textarea`
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1rem;
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: solid 1px #cecece;
+  resize: none;
+`
+const Button = styled.div`
+  width: 100%;
+  height: 40px;
+  border-radius: 4px;
+  border: solid 1px #cecece;
+  margin-top: 7px;
+  margin-bottom: 50px;
+  background-color: #0f204b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: "NanumSRB";
 `
