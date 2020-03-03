@@ -11,11 +11,17 @@ function Text() {
         <NoticeBox>공지</NoticeBox>
         <NoticeText>토트넘 PL 19 ~ 20 우승 실패 확정</NoticeText>
       </Notice>
-      {[1, 2, 3, 4, 5, 6, 85, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].splice(1, 8).map((data, index) => {
+      {[1, 2, 3, 4, 5, 6, 1, 1, 1, 1, 85, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].splice(1, 17).map((data, index) => {
         return (
           <BoradText key={index}>
-            <img src={require("../../assets/ico.gif")} alt="점" width="3px" height="3px;" style={{ backgroundColor: "black", marginRight: "10px" }} />
-            <BoradTitle>게시판테스트</BoradTitle>
+            <Flex>
+              <img src={require("../../assets/ico.gif")} alt="점" width="3px" height="3px;" style={{ backgroundColor: "black", marginRight: "10px" }} />
+              <BoradTitle>게시판테스트</BoradTitle>
+            </Flex>
+            <Flex>
+              <BoradWriter>염태민</BoradWriter>
+              <BoradDate>2019.04.01</BoradDate>
+            </Flex>
           </BoradText>
         )
       })}
@@ -25,23 +31,33 @@ function Text() {
 interface props {
   expansion: boolean
 }
-const Board = observer(({ expansion }: props) => {
+const Post = observer(({ expansion }: props) => {
   const authStore = useContext(authStoreContext)
   const history = useHistory()
   function HistoryWrite() {
-    history.push("/write")
+    history.push("/postwrite")
+  }
+  function HistoryBoard() {
+    window.scrollTo(0, 0)
+    history.push("/post")
+  }
+  function token(): any {
+    authStore.token(localStorage.getItem("token"))
   }
   useEffect(() => {
-    const authStore = useContext(authStoreContext)
-    authStore.token(localStorage.getItem("token"))
-  }, [])
+    return () => {
+      token()
+    }
+  })
   return (
     <Wrap>
       <TitleWrap>
         <Title expansion={expansion}>게시판</Title>
         <div style={{ display: "flex" }}>
           {authStore.tokenState === true ? <TitleCreate onClick={HistoryWrite}>글쓰기</TitleCreate> : ""}
-          <TitleView expansion={expansion}>더보기</TitleView>
+          <TitleView expansion={expansion} onClick={HistoryBoard}>
+            더보기
+          </TitleView>
         </div>
       </TitleWrap>
       <TitleLine>
@@ -53,14 +69,14 @@ const Board = observer(({ expansion }: props) => {
   )
 })
 
-export default Board
+export default Post
 
 const Wrap = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
   min-width: 980px;
-  height: 370px;
+  height: 650px;
   flex-direction: column;
   overflow-y: hidden;
   @media only screen and (max-width: 1445px) {
@@ -69,8 +85,6 @@ const Wrap = styled.div`
 `
 const Title = styled.div`
   font-size: ${(props: props) => (props.expansion === true ? "28px" : "20px")};
-  margin-top: ${(props: props) => (props.expansion === true ? "10px" : "0px")};
-  margin-bottom: ${(props: props) => (props.expansion === true ? "10px" : "0px")};
   font-family: "NanumSRB";
   display: flex;
   justify-content: center;
@@ -161,7 +175,18 @@ const BoradText = styled.div`
   box-sizing: border-box;
   font-size: 13px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   border-bottom: 0.2px solid #f4efff;
 `
+const BoradWriter = styled.div`
+  margin-right: 80px;
+  text-align: center;
+`
 const BoradTitle = styled.div``
+const BoradDate = styled.div``
+const Flex = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`

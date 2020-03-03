@@ -1,17 +1,17 @@
 import React from "react"
 import styled from "styled-components"
-import Board from "../Main/Board"
-function Main() {
+import PostWrap from "../Main/Post"
+function Post() {
   return (
     <Wrap>
       <div>
-        <Board expansion={true}></Board>
+        <PostWrap expansion={true}></PostWrap>
       </div>
     </Wrap>
   )
 }
 
-export default Main
+export default Post
 
 const Wrap = styled.div`
   width: 100%;

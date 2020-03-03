@@ -1,6 +1,6 @@
 import React from "react"
 import { Route } from "react-router-dom"
-import { Home, SignUp, Board } from "./pages"
+import { Home, SignUp, Post, PostWrite } from "./pages"
 import { createGlobalStyle } from "styled-components"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
@@ -116,7 +116,8 @@ const App = () => {
       <GlobalStyle></GlobalStyle>
       <Route exact path="/" component={Home} />
       <Route exact path="/signup" component={SignUp} />
-      <Route exact path="/board" component={Board} />
+      <Route exact path="/post" component={Post} />
+      <Route exact path="/postwrite" component={PostWrite} />
     </>
   )
 }

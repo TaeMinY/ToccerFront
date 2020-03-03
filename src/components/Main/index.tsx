@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Swiper from "react-id-swiper"
-import Board from "./Board"
+import Post from "./Post"
 import Chat from "./Chat"
 function Main() {
   const params = {
@@ -39,7 +39,7 @@ function Main() {
           </SwiperItem>
         </Swiper>
         <Text style={{ width: "100%", display: "flex" }}>
-          <Board expansion={false}></Board>
+          <Post expansion={false}></Post>
           <Chat></Chat>
         </Text>
       </div>
@@ -52,7 +52,7 @@ export default Main
 const Wrap = styled.div`
   width: 100%;
   padding: 0% 5%;
-  height: 10000px;
+  height: 1500px;
   & > div {
     max-width: 1300px;
     display: flex;
