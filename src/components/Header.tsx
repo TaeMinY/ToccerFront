@@ -22,16 +22,16 @@ const Header = observer(() => {
     authStore.token(localStorage.getItem("token"))
   }
   useEffect(() => {
-    const authStore = useContext(authStoreContext)
-    authStore.token(localStorage.getItem("token"))
-  }, [])
+    console.log("callback")
+    token()
+  })
   return (
     <Wrap>
       <div>
         <HeaderLeft>
           <Title onClick={Toccer}>Toccer</Title>
           <Menu>
-            <li>커뮤니티</li>
+            <li>게시판</li>
             <li>경기</li>
           </Menu>
         </HeaderLeft>
