@@ -43,7 +43,6 @@ class authStore {
     await Axios.Post("/account/token", { token: token })
       .then((result: any) => {
         if (result.data.state) {
-          console.log("성공")
           this.tokenState = true
         } else {
           this.tokenState = false
