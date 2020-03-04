@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 
 import { observer } from "mobx-react-lite"
@@ -24,9 +24,6 @@ const Header = observer(() => {
   function token(): any {
     authStore.token(localStorage.getItem("token"))
   }
-  useEffect(() => {
-    token()
-  })
   return (
     <Wrap>
       <div>
