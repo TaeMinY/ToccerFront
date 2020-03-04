@@ -16,17 +16,19 @@ interface Data {
 }
 
 const Text = observer(() => {
+  const history = useHistory()
   const postStore: any = useContext(postStoreContext)
   useEffect(() => {
     postStore.FindAll().then((result: any) => {})
   }, [])
-
-  console.log("렌더링이 완료되었습니다!")
+  function Page(_id: string) {
+    history.push(`/postlist/${_id}`)
+  }
   return (
     <>
       {postStore.Lists.adminLists.splice(0, 5).map((data: Data, index: number) => {
         return (
-          <Notice key={index}>
+          <Notice key={index} onClick={() => Page(data._id)}>
             <NoticeBox>공지</NoticeBox>
             <NoticeText>{data.title}</NoticeText>
           </Notice>
@@ -34,7 +36,7 @@ const Text = observer(() => {
       })}
       {postStore.Lists.basicLists.splice(0, 17).map((data: Data, index: number) => {
         return (
-          <BoradText key={index}>
+          <BoradText key={index} onClick={() => Page(data._id)}>
             <Flex>
               <img src={require("../../assets/ico.gif")} alt="점" width="3px" height="3px;" style={{ backgroundColor: "black", marginRight: "10px" }} />
               <BoradTitle>{data.title}</BoradTitle>
