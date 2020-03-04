@@ -1,11 +1,13 @@
-import React from "react"
-import { Route } from "react-router-dom"
+import React, { useEffect, useContext } from "react"
+import { Route, useHistory } from "react-router-dom"
 import { Home, SignUp, Post, PostWrite } from "./pages"
 import { createGlobalStyle } from "styled-components"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import "swiper/css/swiper.css"
 import "./App.css"
+import { authStoreContext } from "./stores/auth"
+
 const GlobalStyle = createGlobalStyle`
 @font-face {
   font-family: "NanumSR";
@@ -106,10 +108,25 @@ a{
  }
  .swiper-scrollbar-drag{
    background-color :#007aff;
- }
- 
-`
+ }`
+
 const App = () => {
+  const history = useHistory()
+
+  const authStore = useContext(authStoreContext)
+  function token(): any {
+    authStore.token(localStorage.getItem("token")).then(e => {
+      if (!authStore.tokenState) {
+        if (window.location.pathname === "/postwrite") {
+          history.push("/")
+        }
+      }
+    })
+  }
+  useEffect(() => {
+    console.log("callback")
+    token()
+  })
   return (
     <>
       <ToastContainer closeOnClick={false} position="top-right" />
