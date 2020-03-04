@@ -1,12 +1,13 @@
 import React, { useEffect, useContext } from "react"
 import { Route, useHistory } from "react-router-dom"
-import { Home, SignUp, Post, PostWrite } from "./pages"
+import { Home, SignUp, Post, PostWrite, PostRead } from "./pages"
 import { createGlobalStyle } from "styled-components"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import "swiper/css/swiper.css"
 import "./App.css"
 import { authStoreContext } from "./stores/auth"
+import { postStoreContext } from "./stores/post"
 
 const GlobalStyle = createGlobalStyle`
 @font-face {
@@ -114,6 +115,7 @@ const App = () => {
   const history = useHistory()
 
   const authStore = useContext(authStoreContext)
+  const postStore: any = useContext(postStoreContext)
   function token(): any {
     authStore.token(localStorage.getItem("token")).then(e => {
       if (!authStore.tokenState) {
@@ -123,9 +125,12 @@ const App = () => {
       }
     })
   }
+  function find(): any {
+    postStore.FindAll()
+  }
   useEffect(() => {
-    console.log("callback")
     token()
+    find()
   })
   return (
     <>
@@ -135,6 +140,7 @@ const App = () => {
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/post" component={Post} />
       <Route exact path="/postwrite" component={PostWrite} />
+      <Route exact path="/postlist/:id" component={PostRead} />
     </>
   )
 }
