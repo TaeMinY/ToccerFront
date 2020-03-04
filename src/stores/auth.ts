@@ -48,6 +48,7 @@ class authStore {
         } else {
           this.tokenState = false
         }
+        return 1
       })
       .catch((err: any) => {
         console.log(err)
