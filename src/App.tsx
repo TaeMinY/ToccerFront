@@ -7,7 +7,6 @@ import "react-toastify/dist/ReactToastify.css"
 import "swiper/css/swiper.css"
 import "./App.css"
 import { authStoreContext } from "./stores/auth"
-import { postStoreContext } from "./stores/post"
 
 const GlobalStyle = createGlobalStyle`
 @font-face {
@@ -115,8 +114,8 @@ const App = () => {
   const history = useHistory()
 
   const authStore = useContext(authStoreContext)
-  const postStore: any = useContext(postStoreContext)
-  function token(): any {
+
+  useEffect(() => {
     authStore.token(localStorage.getItem("token")).then(e => {
       if (!authStore.tokenState) {
         if (window.location.pathname === "/postwrite") {
@@ -124,13 +123,6 @@ const App = () => {
         }
       }
     })
-  }
-  function find(): any {
-    postStore.FindAll()
-  }
-  useEffect(() => {
-    token()
-    find()
   })
   return (
     <>
