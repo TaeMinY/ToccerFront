@@ -1,16 +1,21 @@
 import React, { useState, useContext } from "react"
 import { postStoreContext } from "../../stores/post"
+import { authStoreContext } from "../../stores/auth"
 import { toast } from "react-toastify"
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import Input from "../Form/Input"
-const PostWrite = () => {
+import { observer } from "mobx-react-lite"
+
+const PostWrite = observer(() => {
   const history = useHistory()
   const [title, setTitle] = useState("")
   const [text, setText] = useState("")
+  const [type, setType] = useState("basic")
   const postStore: any = useContext(postStoreContext)
+  const authStore: any = useContext(authStoreContext)
   function Upload() {
-    postStore.Upload(title, text, localStorage.getItem("token")).then((result: any) => {
+    postStore.Upload(title, text, localStorage.getItem("token"), type).then((result: any) => {
       if (result.data.state) {
         toast("게시물을 성공적으로 작성했습니다.", { autoClose: 6000 })
         history.push("/")
@@ -36,6 +41,19 @@ const PostWrite = () => {
               setTitle(e.target.value)
             }}
           />
+          {authStore.adminState === true ? (
+            <Input
+              type="text"
+              placeholder="타입 ( basic, admin )"
+              style={{ margin: "21px 0px 7px 0px" }}
+              value={type}
+              onChange={e => {
+                setType(e.target.value)
+              }}
+            />
+          ) : (
+            ""
+          )}
           <InputText
             rows={25}
             placeholder="내용"
@@ -50,7 +68,7 @@ const PostWrite = () => {
       </Wrap>
     </>
   )
-}
+})
 
 export default PostWrite
 const Title = styled.div`
@@ -97,6 +115,9 @@ const InputText = styled.textarea`
   border-radius: 4px;
   border: solid 1px #cecece;
   resize: none;
+  &:focus {
+    outline: 0;
+  }
 `
 const Button = styled.div`
   width: 100%;

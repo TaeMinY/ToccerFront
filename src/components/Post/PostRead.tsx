@@ -1,10 +1,6 @@
-import React, { useState, useContext } from "react"
-import { postStoreContext } from "../../stores/post"
-import { useHistory } from "react-router-dom"
+import React from "react"
 import styled from "styled-components"
 const PostWrite = () => {
-  const history = useHistory()
-  const postStore: any = useContext(postStoreContext)
   return (
     <>
       <Wrap>
@@ -12,7 +8,7 @@ const PostWrite = () => {
           <TitleWrap>
             <Title>게시판 등록</Title>
           </TitleWrap>
-          <TitleLine>aa</TitleLine>
+          <TitleLine></TitleLine>
         </div>
       </Wrap>
     </>
