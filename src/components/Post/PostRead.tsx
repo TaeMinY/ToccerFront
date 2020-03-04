@@ -1,19 +1,38 @@
-import React from "react"
+import React, { useState, useContext, useEffect } from "react"
 import styled from "styled-components"
-const PostWrite = () => {
+import { observer } from "mobx-react-lite"
+import { postStoreContext } from "../../stores/post"
+import { useParams } from "react-router-dom"
+interface RouteParams {
+  id: string
+}
+const PostWrite = observer(() => {
+  const postStore: any = useContext(postStoreContext)
+  const params = useParams<RouteParams>()
+  const [title, setTitle] = useState("")
+  const [text, setText] = useState("")
+
+  useEffect(() => {
+    postStore.Find(params.id).then((result: any) => {
+      console.log(result.data.data)
+      setTitle(result.data.data.title)
+      setText(result.data.data.text)
+    })
+  }, [])
+
   return (
     <>
       <Wrap>
         <div>
           <TitleWrap>
-            <Title>게시판 등록</Title>
+            <Title>{title}</Title>
           </TitleWrap>
-          <TitleLine></TitleLine>
+          <TitleLine>{text}</TitleLine>
         </div>
       </Wrap>
     </>
   )
-}
+})
 
 export default PostWrite
 const Title = styled.div`
