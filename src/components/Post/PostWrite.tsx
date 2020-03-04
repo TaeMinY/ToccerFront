@@ -1,14 +1,23 @@
 import React, { useState, useContext } from "react"
 import { postStoreContext } from "../../stores/post"
-
+import { toast } from "react-toastify"
+import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import Input from "../Form/Input"
 const PostWrite = () => {
+  const history = useHistory()
   const [title, setTitle] = useState("")
   const [text, setText] = useState("")
   const postStore: any = useContext(postStoreContext)
   function Upload() {
-    postStore.Upload(title, text, localStorage.getItem("token"))
+    postStore.Upload(title, text, localStorage.getItem("token")).then((result: any) => {
+      if (result.data.state) {
+        toast("게시물을 성공적으로 작성했습니다.", { autoClose: 6000 })
+        history.push("/")
+      } else {
+        toast(result.data.result)
+      }
+    })
   }
   return (
     <>
