@@ -17,7 +17,6 @@ class postStore {
   }
   @action FindAll: any = async () => {
     var admin: any = []
-    var basic: any = []
     await Axios.Post("/post/findall", {})
       .then((result: any) => {
         console.log("모두요청", result.data.data)
@@ -32,6 +31,15 @@ class postStore {
       })
       .catch((err: any) => {})
     this.Lists.adminLists = admin
+  }
+  @action Find: any = async (_id: string) => {
+    var turn: any
+    await Axios.Post("/post/findone", { _id: _id })
+      .then((result: any) => {
+        turn = result
+      })
+      .catch((err: any) => {})
+    return turn
   }
 }
 export const postStoreContext = createContext(new postStore())
