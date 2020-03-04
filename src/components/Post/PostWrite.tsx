@@ -1,7 +1,15 @@
-import React from "react"
+import React, { useState, useContext } from "react"
+import { postStoreContext } from "../../stores/post"
+
 import styled from "styled-components"
 import Input from "../Form/Input"
-function PostWrite() {
+const PostWrite = () => {
+  const [title, setTitle] = useState("")
+  const [text, setText] = useState("")
+  const postStore: any = useContext(postStoreContext)
+  function Upload() {
+    postStore.Upload(title, text, localStorage.getItem("token"))
+  }
   return (
     <>
       <Wrap>
@@ -14,21 +22,21 @@ function PostWrite() {
             type="text"
             placeholder="제목 ( 4 ~ 20 )"
             style={{ margin: "21px 0px 7px 0px" }}
-            // value={id}
-            // onChange={e => {
-            //   setId(e.target.value)
-            // }}
+            value={title}
+            onChange={e => {
+              setTitle(e.target.value)
+            }}
           />
           <InputText
             rows={25}
             placeholder="내용"
             style={{ margin: "7px 0px" }}
-            // value={id}
-            // onChange={e => {
-            //   setId(e.target.value)
-            // }}
+            value={text}
+            onChange={e => {
+              setText(e.target.value)
+            }}
           />
-          <Button>등록</Button>
+          <Button onClick={Upload}>등록</Button>
         </div>
       </Wrap>
     </>
