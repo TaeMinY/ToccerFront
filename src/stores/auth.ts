@@ -4,6 +4,7 @@ import Axios from "../libs/axios"
 class authStore {
   @observable state: boolean = false
   @observable tokenState: boolean = false
+  @observable adminState: boolean = false
 
   @action signUp: any = async (id: string, pwd: string, pwd2: string, username: string, email: string, terms: boolean, profile__expansion: string) => {
     var turn: any
@@ -44,6 +45,11 @@ class authStore {
       .then((result: any) => {
         if (result.data.state) {
           this.tokenState = true
+          if (result.data.admin === true) {
+            this.adminState = true
+          } else {
+            this.adminState = false
+          }
         } else {
           this.tokenState = false
         }

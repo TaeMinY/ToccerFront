@@ -2,6 +2,7 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import Header from "../../components/Header"
 import PostWriteWrap from "../../components/Post/PostWrite"
+
 function Post() {
   return (
     <>
