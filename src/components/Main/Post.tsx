@@ -180,7 +180,7 @@ const BoradText = styled.div`
   border-bottom: 0.2px solid #f4efff;
 `
 const BoradWriter = styled.div`
-  margin-right: 80px;
+  margin-right: 35px;
   text-align: center;
 `
 const BoradTitle = styled.div``
