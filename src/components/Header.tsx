@@ -18,6 +18,9 @@ const Header = observer(() => {
     localStorage.removeItem("token")
     token()
   }
+  function Post() {
+    history.push("/post")
+  }
   function token(): any {
     authStore.token(localStorage.getItem("token"))
   }
@@ -30,7 +33,7 @@ const Header = observer(() => {
         <HeaderLeft>
           <Title onClick={Toccer}>Toccer</Title>
           <Menu>
-            <li>게시판</li>
+            <li onClick={Post}>게시판</li>
             <li>경기</li>
           </Menu>
         </HeaderLeft>
