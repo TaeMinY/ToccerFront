@@ -3,23 +3,35 @@ import { createContext } from "react"
 
 import Axios from "../libs/axios"
 class postStore {
-  @observable lists: any = []
+  @observable Lists: any = { adminLists: [], basicLists: [] }
 
-  @action Upload: any = async (title: string, text: string, token: string) => {
+  @action Upload: any = async (title: string, text: string, token: string, type: string) => {
     var turn: any
-    await Axios.Post("/post/create", { title, text, token })
+    console.log(type)
+    await Axios.Post("/post/create", { title, text, token, type })
       .then((result: any) => {
         turn = result
       })
       .catch((err: any) => {})
     return turn
   }
-  @action FindAll: any = async (title: string, text: string, token: string) => {
-    await Axios.Post("/post/findall", { title, text, token })
+  @action FindAll: any = async () => {
+    var admin: any = []
+    var basic: any = []
+    await Axios.Post("/post/findall", {})
       .then((result: any) => {
-        this.lists = result.data.data
+        console.log("모두요청", result.data.data)
+        result.data.data.forEach((element: any) => {
+          console.log("dd")
+          if (element.type === "admin") {
+            admin.push(element)
+          } else {
+            this.Lists.basicLists.push(element)
+          }
+        })
       })
       .catch((err: any) => {})
+    this.Lists.adminLists = admin
   }
 }
 export const postStoreContext = createContext(new postStore())
