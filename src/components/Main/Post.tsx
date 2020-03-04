@@ -167,6 +167,7 @@ const Notice = styled.div`
   display: flex;
   align-items: center;
   border-bottom: 0.5px solid #f4efff;
+  cursor: pointer;
 `
 const NoticeBox = styled.div`
   height: 22px;
@@ -198,6 +199,7 @@ const BoradText = styled.div`
   justify-content: space-between;
   align-items: center;
   border-bottom: 0.2px solid #f4efff;
+  cursor: pointer;
 `
 const BoradWriter = styled.div`
   margin-right: 35px;
