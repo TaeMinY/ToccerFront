@@ -22,7 +22,6 @@ const Header = observer(() => {
     authStore.token(localStorage.getItem("token"))
   }
   useEffect(() => {
-    console.log("callback")
     token()
   })
   return (

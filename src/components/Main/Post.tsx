@@ -1,38 +1,52 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import { observer } from "mobx-react-lite"
 import { authStoreContext } from "../../stores/auth"
+import { postStoreContext } from "../../stores/post"
 
-function Text() {
+interface Data {
+  _id: string
+  title: string
+  text: string
+  username: string
+  time: string
+  userId: string
+}
+
+const Text = observer(() => {
+  const postStore: any = useContext(postStoreContext)
+
   return (
     <>
       <Notice>
         <NoticeBox>공지</NoticeBox>
         <NoticeText>토트넘 PL 19 ~ 20 우승 실패 확정</NoticeText>
       </Notice>
-      {[1, 2, 3, 4, 5, 6, 1, 1, 1, 1, 85, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].splice(1, 17).map((data, index) => {
+      {postStore.lists.splice(0, 17).map((data: Data, index: number) => {
         return (
           <BoradText key={index}>
             <Flex>
               <img src={require("../../assets/ico.gif")} alt="점" width="3px" height="3px;" style={{ backgroundColor: "black", marginRight: "10px" }} />
-              <BoradTitle>게시판테스트</BoradTitle>
+              <BoradTitle>{data.title}</BoradTitle>
             </Flex>
             <Flex>
-              <BoradWriter>염태민</BoradWriter>
-              <BoradDate>2019.04.01</BoradDate>
+              <BoradWriter>{data.username}</BoradWriter>
+              <BoradDate>{data.time.substr(0, 10)}</BoradDate>
             </Flex>
           </BoradText>
         )
       })}
     </>
   )
-}
+})
 interface props {
   expansion: boolean
 }
 const Post = observer(({ expansion }: props) => {
   const authStore = useContext(authStoreContext)
+  const postStore: any = useContext(postStoreContext)
+
   const history = useHistory()
   function HistoryWrite() {
     history.push("/postwrite")
@@ -44,9 +58,14 @@ const Post = observer(({ expansion }: props) => {
   function token(): any {
     authStore.token(localStorage.getItem("token"))
   }
+  function find(): any {
+    postStore.FindAll()
+  }
   useEffect(() => {
     return () => {
       token()
+      find()
+      console.log(postStore.lists)
     }
   })
   return (
@@ -76,12 +95,13 @@ const Wrap = styled.div`
   flex: 1;
   flex-direction: column;
   min-width: 980px;
-  height: 650px;
+  max-height: 650px;
   flex-direction: column;
   overflow-y: hidden;
   @media only screen and (max-width: 1445px) {
     min-width: 100%;
   }
+  margin-bottom: 10px;
 `
 const Title = styled.div`
   font-size: ${(props: props) => (props.expansion === true ? "28px" : "20px")};
