@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import { observer } from "mobx-react-lite"
@@ -12,18 +12,27 @@ interface Data {
   username: string
   time: string
   userId: string
+  type: string
 }
 
 const Text = observer(() => {
   const postStore: any = useContext(postStoreContext)
+  useEffect(() => {
+    postStore.FindAll().then((result: any) => {})
+  }, [])
 
+  console.log("렌더링이 완료되었습니다!")
   return (
     <>
-      <Notice>
-        <NoticeBox>공지</NoticeBox>
-        <NoticeText>토트넘 PL 19 ~ 20 우승 실패 확정</NoticeText>
-      </Notice>
-      {postStore.lists.splice(0, 17).map((data: Data, index: number) => {
+      {postStore.Lists.adminLists.splice(0, 5).map((data: Data, index: number) => {
+        return (
+          <Notice key={index}>
+            <NoticeBox>공지</NoticeBox>
+            <NoticeText>{data.title}</NoticeText>
+          </Notice>
+        )
+      })}
+      {postStore.Lists.basicLists.splice(0, 17).map((data: Data, index: number) => {
         return (
           <BoradText key={index}>
             <Flex>
@@ -45,7 +54,6 @@ interface props {
 }
 const Post = observer(({ expansion }: props) => {
   const authStore = useContext(authStoreContext)
-  const postStore: any = useContext(postStoreContext)
 
   const history = useHistory()
   function HistoryWrite() {
@@ -55,18 +63,7 @@ const Post = observer(({ expansion }: props) => {
     window.scrollTo(0, 0)
     history.push("/post")
   }
-  function token(): any {
-    authStore.token(localStorage.getItem("token"))
-  }
-  function find(): any {
-    postStore.FindAll()
-  }
-  useEffect(() => {
-    return () => {
-      token()
-      find()
-    }
-  })
+
   return (
     <Wrap>
       <TitleWrap>
