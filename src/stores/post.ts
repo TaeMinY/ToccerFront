@@ -11,9 +11,7 @@ class postStore {
       .then((result: any) => {
         turn = result
       })
-      .catch((err: any) => {
-        console.log(err)
-      })
+      .catch((err: any) => {})
     return turn
   }
   @action FindAll: any = async (title: string, text: string, token: string) => {

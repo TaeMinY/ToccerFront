@@ -65,7 +65,6 @@ const Post = observer(({ expansion }: props) => {
     return () => {
       token()
       find()
-      console.log(postStore.lists)
     }
   })
   return (
