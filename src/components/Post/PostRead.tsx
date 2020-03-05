@@ -9,6 +9,7 @@ import { toast } from "react-toastify"
 interface RouteParams {
   id: string
 }
+
 const PostWrite = observer(() => {
   const postStore: any = useContext(postStoreContext)
   const commentStore: any = useContext(commentStoreContext)
@@ -16,11 +17,16 @@ const PostWrite = observer(() => {
   const [title, setTitle] = useState("")
   const [text, setText] = useState("")
   const [chat, setChat] = useState("")
+  const [chatList, setChatList] = useState([])
+
   useEffect(() => {
     postStore.Find(params.id).then((result: any) => {
       console.log(result.data.data)
       setTitle(result.data.data.title)
       setText(result.data.data.text)
+    })
+    commentStore.Find(params.id).then((result: any) => {
+      setChatList(result.data.data)
     })
   }, [])
   function signUpEnter(e: any) {
@@ -30,11 +36,15 @@ const PostWrite = observer(() => {
   }
   function commit() {
     commentStore.Create(params.id, chat, localStorage.getItem("token")).then((result: any) => {
-      // if (result.data.state === true) {
-      //   toast("댓글을 정상적으로 작성하셨습니다")
-      // } else {
-      //   toast(result.data.result)
-      // }
+      if (result.data.state === true) {
+        toast("댓글을 정상적으로 작성하셨습니다")
+        setChat("")
+        commentStore.Find(params.id).then((result: any) => {
+          setChatList(result.data.data)
+        })
+      } else {
+        toast(result.data.result)
+      }
     })
   }
   return (
@@ -58,17 +68,21 @@ const PostWrite = observer(() => {
             />
             <Button onClick={commit}>전송</Button>
           </div>
-          <TitleLine>
-            <ChatList>
-              <div style={{ display: "flex" }}>
-                <ChatName>염태민</ChatName>
-                <ChatText>내용</ChatText>
-              </div>
-              <div style={{ display: "flex" }}>
-                <ChatTime>Time</ChatTime>
-              </div>
-            </ChatList>
-          </TitleLine>
+          <TitleLine2>
+            {chatList.map((data: any, index: number) => {
+              return (
+                <ChatList>
+                  <div style={{ display: "flex" }}>
+                    <ChatName>{data.username}</ChatName>
+                    <ChatText>{data.text}</ChatText>
+                  </div>
+                  <div style={{ display: "flex" }}>
+                    <ChatTime>{data.time.substr(0, 10)}</ChatTime>
+                  </div>
+                </ChatList>
+              )
+            })}
+          </TitleLine2>
         </div>
       </Wrap>
     </>
@@ -90,7 +104,13 @@ const TitleLine = styled.div`
   border-top: 1.5px solid black;
   margin-top: 5px;
   padding: 30px 0px 30px 0px;
-  display: flex;
+`
+const TitleLine2 = styled.div`
+  width: 100%;
+  height: 100%;
+  border-top: 1.5px solid black;
+  margin-top: 5px;
+  padding: 5px 0px 5px 0px;
 `
 const TitleWrap = styled.div`
   display: flex;
@@ -129,6 +149,7 @@ const ChatList = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  margin: 15px 0px 15px 0px;
 `
 const ChatName = styled.div`
   font-family: "ProductSansR";
