@@ -14,5 +14,14 @@ class commentStore {
       .catch((err: any) => {})
     return turn
   }
+  @action Find: any = async (post_id: string) => {
+    var turn: any
+    await Axios.Post("/comment/find", { post_id })
+      .then((result: any) => {
+        turn = result
+      })
+      .catch((err: any) => {})
+    return turn
+  }
 }
 export const commentStoreContext = createContext(new commentStore())
