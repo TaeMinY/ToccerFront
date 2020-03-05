@@ -54,11 +54,21 @@ const PostWrite = observer(() => {
               onChange={e => {
                 setChat(e.target.value)
               }}
-              onClick={commit}
               onKeyPress={signUpEnter}
             />
-            <Button>전송</Button>
+            <Button onClick={commit}>전송</Button>
           </div>
+          <TitleLine>
+            <ChatList>
+              <div style={{ display: "flex" }}>
+                <ChatName>염태민</ChatName>
+                <ChatText>내용</ChatText>
+              </div>
+              <div style={{ display: "flex" }}>
+                <ChatTime>Time</ChatTime>
+              </div>
+            </ChatList>
+          </TitleLine>
         </div>
       </Wrap>
     </>
@@ -114,4 +124,19 @@ const Button = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`
+const ChatList = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`
+const ChatName = styled.div`
+  font-family: "ProductSansR";
+`
+const ChatText = styled.div`
+  font-family: "ProductSansR";
+  margin-left: 30px;
+`
+const ChatTime = styled.div`
+  font-family: "ProductSansR";
 `
