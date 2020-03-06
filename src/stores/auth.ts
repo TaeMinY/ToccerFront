@@ -41,10 +41,12 @@ class authStore {
     return turn
   }
   @action token = async (token: any) => {
+    var turn: any
     await Axios.Post("/account/token", { token: token })
       .then((result: any) => {
         if (result.data.state) {
           this.tokenState = true
+          turn = result.data.data
           if (result.data.admin === true) {
             this.adminState = true
           } else {
@@ -53,11 +55,11 @@ class authStore {
         } else {
           this.tokenState = false
         }
-        return 1
       })
       .catch((err: any) => {
         console.log(err)
       })
+    return turn
   }
 }
 //아이디 중복 해결하기

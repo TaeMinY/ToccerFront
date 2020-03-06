@@ -1,19 +1,74 @@
-import React from "react"
+import React, { useContext, useEffect, useState } from "react"
 import styled from "styled-components"
 import Input from "../Form/Input"
-function Chat() {
+import { authStoreContext } from "../../stores/auth"
+import { observer } from "mobx-react-lite"
+import * as io from "socket.io-client"
+const client = io.connect("http://localhost:4000")
+
+const Chat = observer(() => {
+  const [chatTest, setChatTest] = useState("")
+  const [chatList, setChatList] = useState<object[]>([])
+  var List: any = []
+  useEffect(() => {
+    client.on("sendClient", (result: any) => {
+      List.push(result)
+      setChatList(List)
+      console.log(result)
+    })
+  }, [])
+  const authStore: any = useContext(authStoreContext)
+  function socketChat() {
+    if (localStorage.getItem("token")) {
+      authStore
+        .token(localStorage.getItem("token"))
+        .then((result: any) => {
+          console.log(result)
+          client.emit("SendServer", { name: result.username, text: chatTest })
+          setChatTest("")
+        })
+        .catch((err: any) => {
+          console.log(err)
+        })
+    } else {
+      console.log("없요")
+      client.emit("SendServer", { name: "익명", text: chatTest })
+    }
+  }
   return (
     <Wrap>
       <TitleWrap>
         <Title>채팅</Title>
       </TitleWrap>
       <TitleLine>
-        <Input></Input>
-        <Button>전송</Button>
+        <div>
+          {chatList.map((data: any, index: number) => {
+            return (
+              <ChatList key={index}>
+                {data.name} : {data.text}
+              </ChatList>
+            )
+          })}
+        </div>
+        <div style={{ width: "100%", display: "flex", position: "absolute", bottom: "0px" }}>
+          <Input
+            value={chatTest}
+            onChange={e => {
+              setChatTest(e.target.value)
+            }}
+          ></Input>
+          <Button
+            onClick={() => {
+              socketChat()
+            }}
+          >
+            전송
+          </Button>
+        </div>
       </TitleLine>
     </Wrap>
   )
-}
+})
 
 export default Chat
 
@@ -43,8 +98,9 @@ const TitleLine = styled.div`
   margin-top: 5px;
   background: rgb(248, 248, 248);
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
+  position: relative;
 `
 const TitleWrap = styled.div`
   display: flex;
@@ -64,3 +120,4 @@ const Button = styled.div`
   justify-content: center;
   align-items: center;
 `
+const ChatList = styled.div``
